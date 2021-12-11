@@ -1,0 +1,51 @@
+@font-face {
+  font-family: "RobotoItalic";
+  src: url("./Roboto-MediumItalic.ttf");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Houdini";
+  src: url("./GreatVibes-Regular.otf");
+  font-weight: normal;
+}
+
+html {
+  font-family: "RobotoItalic";
+}
+
+/* initial element styles */
+body, ul, h1, h2, h3 {
+  padding: 0;
+  margin: 0;
+}
+
+#content {
+  background-color: rgb(16, 16, 16);
+  height: 100vh;
+  overflow: auto;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 2.5rem 0;
+  margin: 0 auto;
+  width: 90%;
+  max-width: 1200px;
+}
+
+.brand {
+  font-family: "Houdini";
+  display: flex;
+  align-items: center;
+  font-size: 32px;
+  color: ghostwhite;
+}
+
+@media (min-width: 500px) {
+  .header {
+    justify-content: space-between;
+  }
+}

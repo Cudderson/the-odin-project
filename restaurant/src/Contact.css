@@ -1,0 +1,47 @@
+.contact-container {
+  display: none;
+  flex-direction: column;
+  margin: 0 auto;
+  /* border: 2px solid coral; */
+  width: 90%;
+  max-width: 1200px;
+  color: ghostwhite;
+}
+
+.contact-container > h2 {
+  font-family: "Houdini";
+  font-weight: normal;
+  font-size: 40px;
+  border-bottom: 2px solid ghostwhite;
+  padding-top: 4rem;
+}
+
+.contact-container > h3 {
+  padding: 4rem 0 .25rem;
+  border-bottom: 1px solid ghostwhite;
+  font-family: "Houdini";
+  font-weight: normal;
+  font-size: 34px;
+}
+
+.contact-container > h3:last-child {
+  border-bottom: none;
+  padding-top: 6rem;
+  text-align: center;
+}
+
+.contact-container > span {
+  padding: 1rem 0 0;
+  font-size: 18px;
+  transition: .5s;
+}
+
+.phone {
+  cursor: pointer;
+}
+
+.phone:hover {
+  color: rgb(206, 49, 49);
+  transition: .5s;
+  text-decoration: underline;
+}

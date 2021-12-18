@@ -47,13 +47,18 @@ body {
 
 #fetch-pokemon {
   margin-top: 2rem;
-  border: none;
+  border: 2px solid rgb(50,50,50);
+  border-radius: 8px;
   padding: .8rem 1.2rem;
   width: 300px;
   cursor: pointer;
   background-color: rgb(50,50,50);
   color: ghostwhite;
   font-size: 18px;
+}
+
+#fetch-pokemon:hover {
+  border: 2px solid limegreen;
 }
 
 .hide {

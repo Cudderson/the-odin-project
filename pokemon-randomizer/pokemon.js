@@ -10,23 +10,18 @@
 // };
 
 // constructor version
-function Pokemon(data) {
+function Pokemon(data, isShiny) {
   this.name = data.name;
-  this.avatar = data.sprites.front_default;
+  this.isShiny = isShiny;
+  this.avatar = isShiny ? data.sprites.front_shiny : data.sprites.front_default;
 }
 
+// add to proto to avoid creating this function for each Pokemon instance
 Pokemon.prototype.capitalizeName = function() {
   const first_letter = this.name.charAt(0).toUpperCase();
   const new_name = first_letter + this.name.slice(1);
   this.name = new_name;
 }
-
-// same function as above, no attachment to constructor
-// function capitalizeName(name) {
-//   const first_letter = name.charAt(0).toUpperCase();
-//   const new_name = first_letter + name.slice(1);
-//   return new_name;
-// }
 
 async function getRandomPokemon() {
   try {
@@ -38,7 +33,13 @@ async function getRandomPokemon() {
     const data = await response.json();
 
     // construct Pokemon object
-    const pokemon = new Pokemon(data);
+    // add a percentage chance for the pokemon to be shiny (1%)
+    let isShiny = false;
+    if (Math.random() <= .01) {
+      isShiny = true;
+    }
+
+    const pokemon = new Pokemon(data, isShiny);
     pokemon.capitalizeName();
 
     return pokemon;
@@ -52,7 +53,17 @@ async function displayPokemon(allPokemon) {
   for (let i = 0; i < 6; i++) {
     const pokemon_object = await getRandomPokemon();
 
-    allPokemon[i].getElementsByTagName("span")[0].textContent = pokemon_object.name;
+    const pokemon_name_element = allPokemon[i].getElementsByTagName("span")[0];
+    pokemon_name_element.textContent = pokemon_object.name;
+
+    if (pokemon_object.isShiny) {
+      // make name gold
+      pokemon_name_element.classList.add('shiny');
+    }
+    else {
+      // make name white
+      pokemon_name_element.classList.remove('shiny');
+    }
 
     const pokemon_avatar = allPokemon[i].getElementsByTagName("img")[0];
     pokemon_avatar.src = pokemon_object.avatar;
@@ -111,4 +122,5 @@ function addListeners() {
   addListeners();
 })();
 
+// this function is called via an IIFE ^^
 // initializeDOMElements();

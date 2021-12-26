@@ -1,7 +1,9 @@
+import PokemonCard from './PokemonCard.js'; 
+
 function App() {
   return (
     <div>
-      hello, world!
+      <PokemonCard />
     </div>
   );
 }

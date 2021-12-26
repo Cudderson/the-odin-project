@@ -1,0 +1,17 @@
+.card-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid slateblue;
+  padding: .5rem 1rem;
+  max-width: 200px;
+}
+
+.card-container > img {
+  display: block;
+  border: 1px solid palevioletred;
+  object-position: top left;
+}
+
+.card-container > span {
+  text-align: center;
+}

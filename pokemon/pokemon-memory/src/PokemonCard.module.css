@@ -15,3 +15,7 @@
 .card-container > span {
   text-align: center;
 }
+
+.hide {
+  opacity: 0;
+}

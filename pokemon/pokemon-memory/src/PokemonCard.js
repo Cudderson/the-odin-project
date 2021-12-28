@@ -16,15 +16,18 @@ const PokemonCard = () => {
     })();
   }, []);
 
+  function displayCard (pokemonToDisplayId) {
+    // display card after image has been loaded
+    document.getElementById(pokemonToDisplayId).classList.remove(styles['hide']);
+  }
+
   return (
     pokemon ? (
-      <div className={styles['card-container']}>
-        <img src={pokemon.sprites.front_default} alt=""></img>
+      <div id={pokemon.name} className={[styles['card-container'], styles['hide']].join(' ')}>
+        <img onLoad={() => displayCard(pokemon.name)} src={pokemon.sprites.front_default} alt=""></img>
         <span>{pokemon.name}</span>
       </div>
     ) : null
-
-    // use the conditional logic above to only render a card when the entire pokemon is ready
   );
 };
 

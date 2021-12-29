@@ -10,10 +10,12 @@
   display: block;
   border: 1px solid palevioletred;
   object-position: top left;
+  pointer-events: none;
 }
 
 .card-container > span {
   text-align: center;
+  pointer-events: none;
 }
 
 .hide {

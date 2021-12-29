@@ -1,20 +1,6 @@
-// this will be a component that renders a pokemon with and image and name
-
-import { useState, useEffect } from "react";
-import fetchRandomPokemon from "./utils/fetchRandomPokemon";
 import styles from "./PokemonCard.module.css";
 
-const PokemonCard = () => {
-  const [pokemon, setPokemon] = useState(null);
-
-  useEffect(() => {
-    // async IIFE
-    (async () => {
-      const fetchedPokemon = await fetchRandomPokemon();
-      // this state change will re-render component
-      setPokemon(fetchedPokemon);
-    })();
-  }, []);
+const PokemonCard = ({pokemonData}) => {
 
   function displayCard (pokemonToDisplayId) {
     // display card after image has been loaded
@@ -22,10 +8,10 @@ const PokemonCard = () => {
   }
 
   return (
-    pokemon ? (
-      <div id={pokemon.name} className={[styles['card-container'], styles['hide']].join(' ')}>
-        <img onLoad={() => displayCard(pokemon.name)} src={pokemon.sprites.front_default} alt=""></img>
-        <span>{pokemon.name}</span>
+    pokemonData ? (
+      <div id={pokemonData.name} className={[styles['card-container'], styles['hide']].join(' ')}>
+        <img onLoad={() => displayCard(pokemonData.name)} src={pokemonData.sprites.front_default} alt=""></img>
+        <span>{pokemonData.name}</span>
       </div>
     ) : null
   );

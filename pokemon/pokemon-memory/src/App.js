@@ -2,6 +2,7 @@ import PokemonCard from "./PokemonCard.js";
 import styles from "./App.module.css";
 import { useState, useEffect } from "react";
 import fetchRandomPokemon from "./utils/fetchRandomPokemon.js";
+import shuffleList from './utils/shuffleList.js';
 
 function App() {
   const [level, setLevel] = useState(1);
@@ -33,22 +34,6 @@ function App() {
     }
   };
 
-  const shuffleList = () => {
-    // modern Fisher-Yates algorithm
-    let arr = [...pokemonList];
-    let right = arr.length - 1;
-
-    while (right > 0) {
-      let index = Math.floor(Math.random() * right);
-      let temp = arr[index];
-      arr[index] = arr[right];
-      arr[right] = temp;
-      right--;
-    }
-
-    setPokemonList(arr);
-  };
-
   const handleClick = (e) => {
     const pokemonClicked = e.target.id;
 
@@ -68,7 +53,7 @@ function App() {
     }
 
     // we should also shuffle the order in which the elements appear on screen
-    shuffleList();
+    setPokemonList(shuffleList(pokemonList));
   };
 
   return (

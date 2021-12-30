@@ -4,13 +4,28 @@
   padding: 0;
 }
 
+html {
+  background-color: rgb(24, 52, 130);
+}
+
+#wrapper {
+  margin: 0 auto;
+  width: 75%;
+  max-width: 900px;
+}
+
+#wrapper > h3 {
+  text-align: center;
+  padding: 4rem 0;
+  font-family: "Verdana", sans-serif;
+  font-size: 40px;
+  color: rgb(220, 151, 6);
+}
+
 #main-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 0 auto;
-  width: 75%;
-  max-width: 900px;
   list-style: none;
 }
 

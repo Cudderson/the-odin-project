@@ -2,7 +2,7 @@ import PokemonCard from "./PokemonCard.js";
 import styles from "./App.module.css";
 import { useState, useEffect } from "react";
 import fetchRandomPokemon from "./utils/fetchRandomPokemon.js";
-import shuffleList from './utils/shuffleList.js';
+import shuffleList from "./utils/shuffleList.js";
 
 function App() {
   const [level, setLevel] = useState(1);
@@ -11,10 +11,10 @@ function App() {
 
   useEffect(() => {
     // make sure container is hidden when new level begins
-    determineVisibility('new_level');
+    determineVisibility("new_level");
 
     console.log("useEffect called");
-    const pokemonRequired = (level * 2) + 2;
+    const pokemonRequired = level * 2 + 2;
     const tempList = [];
 
     updatePokemonFound(new Set());
@@ -36,10 +36,9 @@ function App() {
     if (index === container.children.length - 1) {
       container.classList.remove(styles["hide"]);
       container.classList.add(styles["show"]);
-    }
-    else if (index === 'new_level') {
-      container.classList.remove(styles['show']);
-      container.classList.add(styles['hide']);
+    } else if (index === "new_level") {
+      container.classList.remove(styles["show"]);
+      container.classList.add(styles["hide"]);
     }
   };
 
@@ -49,8 +48,7 @@ function App() {
     if (!pokemonFound.has(pokemonClicked)) {
       updatePokemonFound(pokemonFound.add(pokemonClicked));
       console.log(pokemonFound);
-      if (pokemonFound.size === (level * 2) + 2) {
-        
+      if (pokemonFound.size === level * 2 + 2) {
         // player wins the level
         console.log("you won the level!");
 
@@ -58,10 +56,9 @@ function App() {
         setLevel(level + 1);
         return;
       }
-    } 
-    else {
+    } else {
       console.log(`pokemonFound already has ${pokemonClicked}! Game Over!`);
-      document.getElementById(pokemonClicked).style.background = 'red';
+      document.getElementById(pokemonClicked).style.background = "red";
       return; // this should also trigger something (TODO)
     }
 
@@ -70,21 +67,24 @@ function App() {
   };
 
   return (
-    <ul id={styles["main-container"]} className={styles["hide"]}>
-      {pokemonList
-        ? pokemonList.map((pokeData, index) => {
-            return (
-              <li
-                onClick={handleClick}
-                onLoad={() => determineVisibility(index)}
-                key={index}
-              >
-                <PokemonCard pokemonData={pokeData} />
-              </li>
-            );
-          })
-        : null}
-    </ul>
+    <div id={styles['wrapper']}>
+      <h3>Pokemon Memory</h3>
+      <ul id={styles["main-container"]} className={styles["hide"]}>
+        {pokemonList
+          ? pokemonList.map((pokeData, index) => {
+              return (
+                <li
+                  onClick={handleClick}
+                  onLoad={() => determineVisibility(index)}
+                  key={index}
+                >
+                  <PokemonCard pokemonData={pokeData} />
+                </li>
+              );
+            })
+          : null}
+      </ul>
+    </div>
   );
 }
 

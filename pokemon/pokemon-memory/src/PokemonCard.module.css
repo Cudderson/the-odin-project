@@ -3,7 +3,7 @@
   flex-direction: column;
   border: 1px solid slateblue;
   padding: .5rem 1rem;
-  max-width: 200px;
+  width: 150px;
 }
 
 .card-container > img {
@@ -16,6 +16,7 @@
 .card-container > span {
   text-align: center;
   pointer-events: none;
+  font-size: 16px;
 }
 
 .hide {

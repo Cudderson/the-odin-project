@@ -1,0 +1,13 @@
+#scoreboard {
+  display: flex;
+  justify-content: center;
+  column-gap: 4rem;
+  padding: 2rem 0;
+  font-family: "Verdana", sans-serif;
+  font-size: 16px;
+  color: rgb(255, 222, 0);
+}
+
+#scoreboard > h4 > span {
+  color: red;
+}

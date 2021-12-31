@@ -16,10 +16,10 @@ html {
 
 #wrapper > h3 {
   text-align: center;
-  padding: 4rem 0;
+  padding: 4rem 0 0;
   font-family: "Verdana", sans-serif;
-  font-size: 40px;
-  color: rgb(220, 151, 6);
+  font-size: 36px;
+  color: rgb(179, 161, 37);
 }
 
 #main-container {

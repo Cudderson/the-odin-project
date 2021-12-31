@@ -1,8 +1,12 @@
-import PokemonCard from "./PokemonCard.js";
-import styles from "./App.module.css";
+// hooks
 import { useState, useEffect } from "react";
+// components
+import PokemonCard from "./PokemonCard.js";
+import Scoreboard from "./Scoreboard.js";
+// utils
 import fetchRandomPokemon from "./utils/fetchRandomPokemon.js";
 import shuffleList from "./utils/shuffleList.js";
+import styles from "./App.module.css";
 
 function App() {
   const [level, setLevel] = useState(1);
@@ -67,8 +71,14 @@ function App() {
   };
 
   return (
-    <div id={styles['wrapper']}>
+    <div id={styles["wrapper"]}>
       <h3>Pokemon Memory</h3>
+      <Scoreboard
+        currentLevel={level}
+        highestLevel={level}
+        pokemonFound={pokemonFound.size == 0 ? 0 : pokemonFound.size}
+        pokemonTotal={(level * 2) + 2}
+      />
       <ul id={styles["main-container"]} className={styles["hide"]}>
         {pokemonList
           ? pokemonList.map((pokeData, index) => {

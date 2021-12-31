@@ -26,8 +26,8 @@ html {
 #main-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
+  justify-content: space-evenly;
+  gap: .5rem;
   list-style: none;
 }
 
@@ -67,4 +67,11 @@ html {
 
 #gameover > button:hover {
   background-color: darkblue;
+}
+
+@media (min-width: 500px) {
+  #main-container {
+    justify-content: center;
+    gap: 1rem;
+  }
 }

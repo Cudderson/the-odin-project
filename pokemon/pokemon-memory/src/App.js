@@ -10,6 +10,7 @@ import styles from "./App.module.css";
 
 function App() {
   const [level, setLevel] = useState(1);
+  const [highestLevel, setHighestLevel] = useState(1);
   const [pokemonList, setPokemonList] = useState(null);
   const [pokemonFound, updatePokemonFound] = useState(new Set());
 
@@ -55,18 +56,25 @@ function App() {
       if (pokemonFound.size === level * 2 + 2) {
         // update and trigger new level ***
         console.log("you won the level!");
-        setLevel(level + 1);
+        setLevel(level + 1)          
+        // update highestLevel if needed
+        // THIS STATE UPDATE ISNT RECORDED IN TIME
+        if (level > highestLevel) {
+          setHighestLevel(level);
+        }
+
         return;
       }
     } else {
-      const gameoverMessage = document.getElementById(styles['message']);
+      const gameoverMessage = document.getElementById(styles["message"]);
       gameoverMessage.style.opacity = 1;
       gameoverMessage.textContent = `${pokemonClicked} has already been found!`;
-      document.getElementById(styles['gameover']).style.opacity = 1;
+      document.getElementById(styles["gameover"]).style.opacity = 1;
       console.log(`pokemonFound already has ${pokemonClicked}! Game Over!`);
       document.getElementById(pokemonClicked).style.background = "red";
       // turn off pointer events on container
-      document.getElementById(styles["main-container"]).style.pointerEvents = 'none';
+      document.getElementById(styles["main-container"]).style.pointerEvents =
+        "none";
       return;
     }
 
@@ -77,19 +85,19 @@ function App() {
   const handleRestartGame = () => {
     window.location.reload();
     return false;
-  }
+  };
 
   return (
     <div id={styles["wrapper"]}>
       <h3>Pokemon Memory</h3>
       <Scoreboard
         currentLevel={level}
-        highestLevel={level}
+        highestLevel={highestLevel}
         pokemonFound={pokemonFound.size === 0 ? 0 : pokemonFound.size}
-        pokemonTotal={(level * 2) + 2}
+        pokemonTotal={level * 2 + 2}
       />
-      <div id={styles['gameover']}>
-        <h5 id={styles['message']}>pikachu has already been found!</h5>
+      <div id={styles["gameover"]}>
+        <h5 id={styles["message"]}>pikachu has already been found!</h5>
         <button onClick={handleRestartGame}>Restart Game</button>
       </div>
       <ul id={styles["main-container"]} className={styles["hide"]}>

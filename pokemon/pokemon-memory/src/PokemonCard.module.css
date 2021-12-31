@@ -1,9 +1,10 @@
 .card-container {
   display: flex;
   flex-direction: column;
-  border: 1px solid slateblue;
+  border-radius: 12px;
   padding: .5rem 1rem;
   width: 150px;
+  background-color: rgb(0, 0, 48);
 }
 
 .card-container > img {
@@ -12,7 +13,11 @@
 }
 
 .card-container > span {
+  display: block;
+  padding: .5rem 0;
+  height: 2.75rem;
   pointer-events: none;
+  font-family: "Verdana", sans-serif;
   font-size: 16px;
   text-align: center;
   color: ghostwhite;

@@ -10,6 +10,7 @@ html {
 
 #wrapper {
   margin: 0 auto;
+  min-width: 325px;
   width: 75%;
   max-width: 900px;
 }
@@ -18,14 +19,15 @@ html {
   text-align: center;
   padding: 4rem 0 0;
   font-family: "Verdana", sans-serif;
-  font-size: 36px;
-  color: rgb(179, 161, 37);
+  font-size: 40px;
+  color: rgb(255, 222, 0);
 }
 
 #main-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 1rem;
   list-style: none;
 }
 

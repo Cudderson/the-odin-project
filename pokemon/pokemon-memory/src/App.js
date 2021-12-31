@@ -10,7 +10,9 @@ import styles from "./App.module.css";
 
 function App() {
   const [level, setLevel] = useState(1);
-  const [highestLevel, setHighestLevel] = useState(1);
+  const [highestLevel, setHighestLevel] = useState(
+    localStorage.highestLevel ? localStorage.highestLevel : 1
+  );
   const [pokemonList, setPokemonList] = useState(null);
   const [pokemonFound, updatePokemonFound] = useState(new Set());
 
@@ -18,7 +20,13 @@ function App() {
     // make sure container is hidden when new level begins
     determineVisibility("new_level");
 
-    console.log("useEffect called");
+    // update highestLevel if needed
+    if (level > highestLevel) {
+      // update state, as well as localStorage for future games
+      localStorage.highestLevel = level;
+      setHighestLevel(level);
+    }
+
     const pokemonRequired = level * 2 + 2;
     const tempList = [];
 
@@ -54,14 +62,9 @@ function App() {
       updatePokemonFound(pokemonFound.add(pokemonClicked));
       console.log(pokemonFound);
       if (pokemonFound.size === level * 2 + 2) {
-        // update and trigger new level ***
+        // update and trigger new level
         console.log("you won the level!");
-        setLevel(level + 1)          
-        // update highestLevel if needed
-        // THIS STATE UPDATE ISNT RECORDED IN TIME
-        if (level > highestLevel) {
-          setHighestLevel(level);
-        }
+        setLevel(level + 1);
 
         return;
       }
@@ -72,13 +75,13 @@ function App() {
       document.getElementById(styles["gameover"]).style.opacity = 1;
       console.log(`pokemonFound already has ${pokemonClicked}! Game Over!`);
       document.getElementById(pokemonClicked).style.background = "red";
-      // turn off pointer events on container
+      // turn off pointer events on container to end game
       document.getElementById(styles["main-container"]).style.pointerEvents =
         "none";
       return;
     }
 
-    // we should also shuffle the order in which the elements appear on screen
+    // shuffle the order in which the elements appear on screen
     setPokemonList(shuffleList(pokemonList));
   };
 

@@ -53,22 +53,31 @@ function App() {
       updatePokemonFound(pokemonFound.add(pokemonClicked));
       console.log(pokemonFound);
       if (pokemonFound.size === level * 2 + 2) {
-        // player wins the level
-        console.log("you won the level!");
-
         // update and trigger new level ***
+        console.log("you won the level!");
         setLevel(level + 1);
         return;
       }
     } else {
+      const gameoverMessage = document.getElementById(styles['message']);
+      gameoverMessage.style.opacity = 1;
+      gameoverMessage.textContent = `${pokemonClicked} has already been found!`;
+      document.getElementById(styles['gameover']).style.opacity = 1;
       console.log(`pokemonFound already has ${pokemonClicked}! Game Over!`);
       document.getElementById(pokemonClicked).style.background = "red";
-      return; // this should also trigger something (TODO)
+      // turn off pointer events on container
+      document.getElementById(styles["main-container"]).style.pointerEvents = 'none';
+      return;
     }
 
     // we should also shuffle the order in which the elements appear on screen
     setPokemonList(shuffleList(pokemonList));
   };
+
+  const handleRestartGame = () => {
+    window.location.reload();
+    return false;
+  }
 
   return (
     <div id={styles["wrapper"]}>
@@ -76,9 +85,13 @@ function App() {
       <Scoreboard
         currentLevel={level}
         highestLevel={level}
-        pokemonFound={pokemonFound.size == 0 ? 0 : pokemonFound.size}
+        pokemonFound={pokemonFound.size === 0 ? 0 : pokemonFound.size}
         pokemonTotal={(level * 2) + 2}
       />
+      <div id={styles['gameover']}>
+        <h5 id={styles['message']}>pikachu has already been found!</h5>
+        <button onClick={handleRestartGame}>Restart Game</button>
+      </div>
       <ul id={styles["main-container"]} className={styles["hide"]}>
         {pokemonList
           ? pokemonList.map((pokeData, index) => {

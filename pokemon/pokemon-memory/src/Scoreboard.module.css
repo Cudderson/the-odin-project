@@ -2,12 +2,12 @@
   display: flex;
   justify-content: center;
   column-gap: 4rem;
-  padding: 3rem 0;
+  padding: 3rem 0 0;
   font-family: "Verdana", sans-serif;
   font-size: 16px;
   color: rgb(179, 161, 37);
 }
 
 #scoreboard > h4 > span {
-  color: red;
+  color: yellowgreen;
 }
